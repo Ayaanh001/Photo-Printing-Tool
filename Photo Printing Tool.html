@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Photo Printing Tool</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/839/839184.png" type="image/png" />
     <style>
         body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -145,6 +147,15 @@
           transform: scale(1.03);
         }
         
+        .preview-heading {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: #1689FC;
+          margin-top: 40px;
+          margin-bottom: -30px;
+          text-align: center;
+        }
+        
         .preview-container-wrapper {
           width: 100%;
           overflow-x: auto;
@@ -237,6 +248,11 @@
           body * {
             visibility: hidden;
           }
+          
+          @page {
+          size: A4 landscape;
+               margin: 0;
+          }
         
           .print-container, .print-container *,
           .print-page, .print-page * {
@@ -298,6 +314,7 @@
     </div>
 
     <main>
+        <h2 class="preview-heading" id="preview-heading" style="display: none;">Preview</h2>
         <div class="preview-container-wrapper" id="preview-container"></div>
         <div class="indicator" id="indicator"></div>
 
@@ -360,18 +377,20 @@
         
           // Hide header
           document.querySelector('header').style.display = 'none';
-        
+          document.getElementById('preview-heading').style.display = 'block';
+          
           previewContainer.innerHTML = '';
           indicator.innerHTML = '';
           printContainer.innerHTML = '';
           printButton.style.display = files.length > 0 ? 'inline-block' : 'none';
-        
+          
+          
           const groups = [];
           for (let i = 0; i < files.length; i += 9) {
             groups.push(files.slice(i, i + 9));
           }
         
-          if (groups.length === 1) {
+          if (groups.length <= 1) {
             previewContainer.classList.add('center-single');
           } else {
             previewContainer.classList.remove('center-single');
