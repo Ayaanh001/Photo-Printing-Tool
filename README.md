@@ -1,9 +1,25 @@
 # **Photo Printing Tool**  
-Print wallet-size and other photo sizes easily from your phone or PC
 
-[![Made with HTML](https://img.shields.io/badge/Made%20with-HTML5-orange.svg)](#)  
-[![Mobile Friendly](https://img.shields.io/badge/Mobile%20Friendly-Yes-blue.svg)](#)
+<p align="center">
+  <img src="https://cdn-icons-png.flaticon.com/512/839/839184.png" alt="Photo Printing Tool Icon" width="96" height="96"><br>
+  <i>v1.1</i>
+</p>
+<p align="center">
+  Print wallet-size and other photo sizes easily from your phone or PC<br><br>
 
+ <!-- Latest Release Badge -->
+<a href="https://github.com/Ayaanh001/Photo-Printing-Tool/releases/latest">
+  <img src="https://img.shields.io/github/v/release/Ayaanh001/Photo-Printing-Tool?label=Latest%20Release&color=green" alt="Latest Release">
+</a>
+<!-- HTML5 Badge -->
+<img src="https://img.shields.io/badge/Made%20with-HTML5-orange.svg" alt="Made with HTML5">
+<!-- JavaScript Badge -->
+<img src="https://img.shields.io/badge/Made%20with-JavaScript-yellow.svg" alt="Made with JavaScript">
+<!-- Mobile Friendly Badge -->
+<img src="https://img.shields.io/badge/Mobile%20Friendly-Yes-blue.svg" alt="Mobile Friendly">
+</p>
+
+<hr>
 <picture>
     <!-- Avoid image being clickable with slight workaround -->
     <source media="(prefers-color-scheme: dark)" srcset="/Assests/device-frame.png" width="230px">
