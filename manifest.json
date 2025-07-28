@@ -1,0 +1,16 @@
+{
+  "name": "Photo Printing Tool",
+  "short_name": "PPT",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1689FC",
+  "description": "Arrange and print wallet-size photos easily.",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/839/839184.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
