@@ -20,10 +20,16 @@
 </p>
 
 <hr>
+<!-- Home Page Image -->
 <picture>
-    <!-- Avoid image being clickable with slight workaround -->
-    <source media="(prefers-color-scheme: dark)" srcset="/Assests/device-frame.png" width="230px">
-    <img alt="Photo Printing Tool" src="/Assests/device-frame.png" width="230px">
+  <source media="(prefers-color-scheme: dark)" srcset="/Assests/Homepage.png" width="230px">
+  <img alt="Home Page" src="/Assests/Homepage.png" width="230px">
+</picture>
+
+<!-- Preview Page Image -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/Assests/Previewpage.png" width="230px">
+  <img alt="Preview Page" src="/Assests/Previewpage.png" width="230px">
 </picture>
 
 **Photo Printing Tool** is a lightweight web app built to solve a common issue: printing wallet-size or custom-sized photos directly from your **phone** or **Windows 11 PC**.
@@ -45,11 +51,10 @@ This tool brings back the convenience — especially useful for printing **walle
 
 ## **How to Use**
 
-1. **Download** the `photo-print-tool.html` file from this repository.
-2. **Open** it in your web browser (Chrome, Edge, Firefox, etc.).
-3. **Upload** the photos you want to print.
-4. In the print window:  Select **Landscape orientation** and Adjust print settings (size, quality, etc.) if needed.
-6. **Print and enjoy!**
+1. **Open** [photo-printing-tool.vercel.app](https://photo-printing-tool.vercel.app/) in your browser(Chrome, Edge, Firefox, etc.).
+2. **Upload** the photos you want to print.
+3. In the print window, select **Landscape orientation** and adjust print settings if needed.
+4. **Print and enjoy!**
 
 ## **Coming Soon**
 
