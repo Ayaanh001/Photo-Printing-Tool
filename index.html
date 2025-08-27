@@ -25,7 +25,7 @@
             background-color: white;
             color: #333;
         }
-        
+
         .top-header {
             display: flex;
             align-items: center;
@@ -38,20 +38,20 @@
             width: 100%;
             z-index: 1000;
         }
-        
+
         .top-header img {
             width: 32px;
             height: 32px;
             margin-right: 0.75rem;
         }
-        
+
         .top-header h1 {
             font-size: 1.4rem;
             font-weight: 600;
             margin: 0;
             color: black;
         }
-        
+
         main {
             display: flex;
             flex-direction: column;
@@ -59,13 +59,13 @@
             padding: 20px 10px 10px;
             text-align: center;
         }
-        
+
         header {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         .icon-wrapper img {
             width: 80%;
             max-width: 300px;
@@ -73,13 +73,13 @@
             object-fit: contain;
             border-radius: 7px;
         }
-        
+
         @media (min-width: 768px) {
             .icon-wrapper img {
                 width: 350px;
             }
         }
-        
+
         header h1 {
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: 700;
@@ -88,7 +88,7 @@
             letter-spacing: -0.5px;
             text-align: center;
         }
-        
+
         header p {
             font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: #444;
@@ -97,17 +97,17 @@
             margin: 0 auto 20px;
             text-align: center;
         }
-        
+
         .file-input-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         input[type="file"] {
             display: none;
         }
-        
+
         .drop-zone {
             background-color: #1689fc;
             border: 2px dashed #ffffff88;
@@ -127,18 +127,18 @@
             font-weight: bold;
             box-sizing: border-box;
         }
-        
+
         .drop-zone:hover {
             background-color: #0e70d4;
             border-color: #ccc;
         }
-        
+
         .drop-zone-icon {
             width: 28px;
             height: 28px;
             filter: brightness(0) invert(1);
         }
-        
+
         .option-container {
             display: none;
             align-items: center;
@@ -154,14 +154,14 @@
             font-size: 18px;
             font-weight: 500;
         }
-        
+
         .option-container .label {
             color: #1c1b1f;
             text-align: left;
             flex: 1;
             padding-left: 8px;
         }
-        
+
         .switch {
             position: relative;
             display: inline-block;
@@ -169,13 +169,13 @@
             height: 26px;
             flex-shrink: 0;
         }
-        
+
         .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-        
+
         .slider {
             position: absolute;
             cursor: pointer;
@@ -187,7 +187,7 @@
             transition: 0.3s;
             border-radius: 34px;
         }
-        
+
         .slider:before {
             position: absolute;
             content: "";
@@ -199,22 +199,22 @@
             border-radius: 50%;
             transition: 0.3s;
         }
-        
+
         .switch input:checked+.slider {
             background-color: #1689FC;
         }
-        
+
         .switch input:checked+.slider:before {
             transform: translateX(22px);
         }
-        
+
         .stepper {
             display: flex;
             align-items: center;
             gap: 12px;
             flex-shrink: 0;
         }
-        
+
         .stepper button {
             width: 40px;
             height: 40px;
@@ -231,7 +231,7 @@
             padding: 0;
             user-select: none;
         }
-        
+
         .value {
             font-size: 18px;
             font-weight: 500;
@@ -243,16 +243,16 @@
             user-select: none;
             background: transparent;
         }
-        
+
         .stepper button:disabled {
             opacity: 0.4;
             cursor: not-allowed;
         }
-        
+
         .stepper button:hover:not(:disabled) {
             background: #e0e0e0;
         }
-        
+
         #printButton {
             display: none;
             margin-top: 18px;
@@ -266,12 +266,12 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
-        
+
         #printButton:hover {
             background-color: #0e70d4;
             transform: scale(1.03);
         }
-        
+
         .preview-heading {
             font-size: 1.4rem;
             font-weight: 600;
@@ -280,7 +280,7 @@
             margin-bottom: -30px;
             text-align: center;
         }
-        
+
         .preview-container-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -292,17 +292,17 @@
             box-sizing: border-box;
             justify-content: center;
         }
-        
+
         .preview-container-wrapper.center-single {
             justify-content: center;
         }
-        
+
         @media (max-width: 767px) {
             .preview-container-wrapper {
-        justify-content: flex-start !important;
+                justify-content: flex-start !important;
             }
         }
-        
+
         .preview-box {
             border: 2px solid #1689fc;
             border-radius: 8px;
@@ -318,11 +318,11 @@
             padding: 10px;
             box-sizing: border-box;
         }
-        
+
         .preview-box.show {
             display: grid;
         }
-        
+
         .photo-slot {
             overflow: hidden;
             display: flex;
@@ -331,20 +331,20 @@
             background-color: #d7e8f9;
             border-radius: 6px;
         }
-        
+
         .photo-slot img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
             display: block;
         }
-        
+
         .photo-slot img.fit-frame {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .indicator {
             display: flex;
             justify-content: center;
@@ -352,7 +352,7 @@
             margin-bottom: 20px;
             gap: 8px;
         }
-        
+
         .dot {
             width: 10px;
             height: 10px;
@@ -361,15 +361,15 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        
+
         .dot.active {
             background-color: #1689fc;
         }
-        
+
         .print-container {
             display: none;
         }
-        
+
         .print-page {
             display: none;
             position: absolute;
@@ -386,24 +386,24 @@
             justify-content: center;
             align-content: center;
         }
-        
+
         @media print {
             body * {
                 visibility: hidden;
             }
-        
+
             @page {
                 size: A4 landscape;
                 margin: 0;
             }
-        
+
             .print-container,
             .print-container *,
             .print-page,
             .print-page * {
                 visibility: visible;
             }
-        
+
             .print-container {
                 display: block !important;
                 position: absolute;
@@ -411,17 +411,17 @@
                 left: 0;
                 width: 100%;
             }
-        
+
             .print-page {
                 display: grid !important;
                 position: relative;
             }
-        
+
             .photo-slot {
                 border: none;
                 background-color: white;
             }
-        
+
             .file-input-wrapper,
             #printButton,
             .option-container,
@@ -433,7 +433,7 @@
                 display: none !important;
             }
         }
-        
+
         footer {
             position: fixed;
             bottom: 0;
@@ -446,22 +446,22 @@
             color: #666;
             z-index: 1000;
         }
-        
+
         footer span a {
             color: #1689fc;
             font-weight: bold;
             text-decoration: none;
         }
-        
+
         footer span a:hover {
             text-decoration: underline;
         }
-        
+
         @keyframes spin {
             from {
                 transform: rotate(0deg);
             }
-        
+
             to {
                 transform: rotate(360deg);
             }
@@ -530,7 +530,7 @@
         window.addEventListener("load", () => {
             document.getElementById("loader").style.display = "none";
         });
-        
+
         const photoInput = document.getElementById("photo-input");
         const previewContainer = document.getElementById("preview-container");
         const printButton = document.getElementById("printButton");
@@ -545,38 +545,38 @@
         const increaseBtn = document.getElementById("increase");
         const valueEl = document.getElementById("value");
         const introHeader = document.getElementById("introHeader");
-        
+
         let originalFiles = [];
         let copies = 1;
         const minCopies = 1;
         const maxCopies = 99;
-        
+
         function vibrateFeedback() {
             if ("vibrate" in navigator) {
                 navigator.vibrate(30);
             }
         }
-        
+
         fitFrameContainer.style.display = "none";
         copiesControl.style.display = "none";
         printButton.style.display = "none";
-        
+
         function updateCopiesDisplay() {
             valueEl.textContent = copies;
             decreaseBtn.disabled = copies <= minCopies;
             increaseBtn.disabled = copies >= maxCopies;
         }
         updateCopiesDisplay();
-        
+
         decreaseBtn.addEventListener("click", () => {
             vibrateFeedback();
             if (copies > minCopies) {
                 copies--;
                 updateCopiesDisplay();
-                updatePreviewAndPrint(); 
+                updatePreviewAndPrint();
             }
         });
-        
+
         increaseBtn.addEventListener("click", () => {
             vibrateFeedback();
             if (copies < maxCopies) {
@@ -585,7 +585,7 @@
                 updatePreviewAndPrint();
             }
         });
-        
+
         fitToFrameCheckbox.addEventListener("change", () => {
             vibrateFeedback();
             const applyClass = fitToFrameCheckbox.checked;
@@ -594,20 +594,20 @@
                 else img.classList.remove("fit-frame");
             });
         });
-        
+
         photoInput.addEventListener("change", handleFiles);
-        
+
         dropZone.addEventListener("dragover", (e) => {
             e.preventDefault();
             dropZone.style.backgroundColor = "#f0f0f0";
             dropZone.style.color = "#1689fc";
         });
-        
+
         dropZone.addEventListener("dragleave", () => {
             dropZone.style.backgroundColor = "#1689fc";
             dropZone.style.color = "white";
         });
-        
+
         dropZone.addEventListener("drop", (e) => {
             e.preventDefault();
             dropZone.style.backgroundColor = "#1689fc";
@@ -618,111 +618,131 @@
                 }
             });
         });
-        
+
         dropZone.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
                 photoInput.click();
             }
         });
-        
+
         function handleFiles(event) {
-            originalFiles = Array.from(event.target.files || []);
+            originalFiles = Array.from(event.target.files || []).map(file => ({
+                file,
+                rotatedDataUrl: null
+            }));
+
             copies = minCopies;
             updateCopiesDisplay();
-        
+
             const hasFiles = originalFiles.length > 0;
             fitFrameContainer.style.display = hasFiles ? "flex" : "none";
             copiesControl.style.display = hasFiles ? "flex" : "none";
             printButton.style.display = hasFiles ? "inline-block" : "none";
-        
+
             dropZone.style.display = hasFiles ? "none" : "flex";
-        
+
             document.querySelector("main").style.padding = hasFiles ? "50px 10px 100px" : "20px 10px 10px";
             introHeader.style.display = hasFiles ? "none" : "flex";
             document.getElementById("preview-heading").style.display = hasFiles ? "block" : "none";
-        
+
             fitFrameContainer.setAttribute("aria-hidden", !hasFiles);
             copiesControl.setAttribute("aria-hidden", !hasFiles);
-        
+
             updatePreviewAndPrint();
         }
-        
+
         function updatePreviewAndPrint() {
             previewContainer.innerHTML = "";
             indicator.innerHTML = "";
             printContainer.innerHTML = "";
-        
+
             if (!originalFiles || originalFiles.length === 0) return;
-        
+
             const filesWithCopies = [];
             for (let i = 0; i < copies; i++) {
                 filesWithCopies.push(...originalFiles);
             }
-        
+
             const groups = [];
             for (let i = 0; i < filesWithCopies.length; i += 9) {
                 groups.push(filesWithCopies.slice(i, i + 9));
             }
-        
+
             previewContainer.classList.toggle("center-single", groups.length <= 1);
             indicator.style.display = groups.length <= 1 ? "none" : "flex";
-        
+
             groups.forEach((group, groupIndex) => {
                 const box = document.createElement("div");
                 box.className = "preview-box show";
                 box.setAttribute("data-index", groupIndex);
-        
+
                 const printPage = document.createElement("div");
                 printPage.className = "print-page";
                 printPage.setAttribute("data-group-index", groupIndex);
-        
-                group.forEach((file) => {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const image = new Image();
-                        image.onload = () => {
-                            const isPortrait = image.height > image.width;
-                            const canvas = document.createElement("canvas");
-                            const ctx = canvas.getContext("2d");
-        
-                            if (isPortrait) {
-                                canvas.width = image.height;
-                                canvas.height = image.width;
-                                ctx.translate(0, image.width);
-                                ctx.rotate(-Math.PI / 2);
-                                ctx.drawImage(image, 0, 0);
-                            } else {
-                                canvas.width = image.width;
-                                canvas.height = image.height;
-                                ctx.drawImage(image, 0, 0);
-                            }
-        
-                            const rotatedDataUrl = canvas.toDataURL();
-        
-                            const previewImg = document.createElement("img");
-                            previewImg.src = rotatedDataUrl;
-                            if (fitToFrameCheckbox.checked) previewImg.classList.add("fit-frame");
-                            const slot = document.createElement("div");
-                            slot.className = "photo-slot";
-                            slot.appendChild(previewImg);
-                            box.appendChild(slot);
-        
-                            const printImg = document.createElement("img");
-                            printImg.src = rotatedDataUrl;
-                            if (fitToFrameCheckbox.checked) printImg.classList.add("fit-frame");
-                            const printSlot = document.createElement("div");
-                            printSlot.className = "photo-slot";
-                            printSlot.appendChild(printImg);
-                            printPage.appendChild(printSlot);
-                        };
-                        image.src = e.target.result;
+
+                group.forEach((item) => {
+                    const {
+                        file
+                    } = item;
+
+                    const useRotatedImage = (rotatedDataUrl) => {
+                        const previewImg = document.createElement("img");
+                        previewImg.src = rotatedDataUrl;
+                        if (fitToFrameCheckbox.checked) previewImg.classList.add("fit-frame");
+
+                        const slot = document.createElement("div");
+                        slot.className = "photo-slot";
+                        slot.appendChild(previewImg);
+                        box.appendChild(slot);
+
+                        const printImg = document.createElement("img");
+                        printImg.src = rotatedDataUrl;
+                        if (fitToFrameCheckbox.checked) printImg.classList.add("fit-frame");
+
+                        const printSlot = document.createElement("div");
+                        printSlot.className = "photo-slot";
+                        printSlot.appendChild(printImg);
+                        printPage.appendChild(printSlot);
                     };
-                    reader.readAsDataURL(file);
+
+                    if (item.rotatedDataUrl) {
+                        // use cached
+                        useRotatedImage(item.rotatedDataUrl);
+                    } else {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const image = new Image();
+                            image.onload = () => {
+                                const isPortrait = image.height > image.width;
+                                const canvas = document.createElement("canvas");
+                                const ctx = canvas.getContext("2d");
+
+                                if (isPortrait) {
+                                    canvas.width = image.height;
+                                    canvas.height = image.width;
+                                    ctx.translate(0, image.width);
+                                    ctx.rotate(-Math.PI / 2);
+                                    ctx.drawImage(image, 0, 0);
+                                } else {
+                                    canvas.width = image.width;
+                                    canvas.height = image.height;
+                                    ctx.drawImage(image, 0, 0);
+                                }
+
+                                const rotatedDataUrl = canvas.toDataURL();
+                                item.rotatedDataUrl = rotatedDataUrl; // ✅ cache it
+
+                                useRotatedImage(rotatedDataUrl);
+                            };
+                            image.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
                 });
-        
+
                 previewContainer.appendChild(box);
                 printContainer.appendChild(printPage);
-        
+
                 const dot = document.createElement("div");
                 dot.className = "dot";
                 if (groupIndex === 0) dot.classList.add("active");
@@ -735,7 +755,7 @@
                 indicator.appendChild(dot);
             });
         }
-        
+
         previewContainer.addEventListener("scroll", () => {
             const boxes = [...previewContainer.children];
             if (!boxes.length) return;
@@ -746,17 +766,17 @@
                 dot.classList.toggle("active", i === index);
             });
         });
-        
+
         printButton.addEventListener("click", () => {
             printContainer.style.display = "block";
             const printPages = document.querySelectorAll(".print-page");
             printPages.forEach((page) => {
                 page.style.display = "grid";
             });
-        
+
             setTimeout(() => {
                 window.print();
-        
+
                 setTimeout(() => {
                     printContainer.style.display = "none";
                     printPages.forEach((page) => {
@@ -765,7 +785,7 @@
                 }, 200);
             }, 120);
         });
-        
+
         document.addEventListener("keydown", (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "o") {
                 photoInput.click();
