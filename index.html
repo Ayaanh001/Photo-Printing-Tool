@@ -9,14 +9,6 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/839/839184.png" type="image/png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#1689FC" />
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker
-                .register("service-worker.js")
-                .then((reg) => console.log("Service Worker Registered"))
-                .catch((err) => console.log("Service Worker Error", err));
-        }
-    </script>
     <style>
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
