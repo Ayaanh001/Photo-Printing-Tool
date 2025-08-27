@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Photo Printing Tool</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/839/839184.png" type="image/png" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1689FC">
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(reg => console.log("Service Worker Registered"))
+            .catch(err => console.log("Service Worker Error", err));
+        }
+    </script>
+    <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: white;
+          color: #333;
+        }
+        
+        .top-header {
+          display: flex;
+          align-items: center;
+          padding: 1rem 1.25rem;
+          background-color: #ffffff;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+        }
+        
+        .top-header img {
+          width: 32px;
+          height: 32px;
+          margin-right: 0.75rem;
+        }
+        
+        .top-header h1 {
+          font-size: 1.4rem;
+          font-weight: 600;
+          margin: 0;
+          color: black;
+        }
+        
+        main {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px 10px 10px;
+          text-align: center;
+        }
+        
+        header {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .icon-wrapper img {
+          width: 80%;
+          max-width: 300px;
+          height: auto;
+          object-fit: contain;
+          border-radius: 7px;
+        }
+        
+        @media (min-width: 768px) {
+          .icon-wrapper img {
+            width: 350px;
+          }
+        }
+        
+        header h1 {
+          font-size: clamp(1.5rem, 5vw, 2.5rem);
+          font-weight: 700;
+          margin: 10px 0 5px;
+          color: var(--text-dark, #000);
+          letter-spacing: -0.5px;
+          text-align: center;
+        }
+        
+        header p {
+          font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+          color: #444;
+          max-width: 480px;
+          line-height: 1.6;
+          margin: 0 auto 20px;
+          text-align: center;
+        }
+        
+        .file-input-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        input[type="file"] {
+          display: none;
+        }
+        
+        .drop-zone {
+          background-color: #1689FC;
+          border: 2px dashed #ffffff88;
+          padding: 25px 20px;
+          border-radius: 10px;
+          font-size: 16px;
+          color: white;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          width: 100%;
+          max-width: 320px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          text-align: center;
+          font-weight: bold;
+          box-sizing: border-box;
+        }
+        
+        .drop-zone:hover {
+          background-color: #0e70d4;
+          border-color: #ccc;
+        }
+        
+        .drop-zone-icon {
+          width: 28px;
+          height: 28px;
+          filter: brightness(0) invert(1);
+        }
+        
+        button {
+          padding: 12px 28px;
+          font-size: 16px;
+          font-weight: bold;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          background-color: #1689FC;
+          color: white;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          margin-top: 20px;
+          display: none;
+        }
+        
+        button:hover {
+          background-color: #1689FC;
+          transform: scale(1.03);
+        }
+        
+        .preview-heading {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: #1689FC;
+          margin-top: 40px;
+          margin-bottom: -30px;
+          text-align: center;
+        }
+        
+        .preview-container-wrapper {
+          width: 100%;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          display: flex;
+          gap: 10px;
+          padding: 10px;
+          margin: 30px 0 10px;
+        }
+        
+        .preview-container-wrapper.center-single {
+          justify-content: center;
+        }
+        
+        .preview-box {
+          border: 2px solid #1689FC;
+          border-radius: 8px;
+          width: 300px;
+          height: 200px;
+          background-color: #EAF4FF;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          gap: 5px;
+          display: none;
+          flex-shrink: 0;
+          scroll-snap-align: center;
+          padding: 10px;
+        }
+        
+        .preview-box.show {
+          display: grid;
+        }
+        
+        .photo-slot {
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #D7E8F9;
+          border-radius: 6px;
+        }
+        
+        .photo-slot img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+        
+        .indicator {
+          display: flex;
+          justify-content: center;
+          margin-top: -10px;
+          margin-bottom: 20px;
+          gap: 8px;
+        }
+        
+        .dot {
+          width: 10px;
+          height: 10px;
+          background-color: #ccc;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+        
+        .dot.active {
+          background-color: #1689FC;
+        }
+        
+        .print-container {
+          display: none;
+        }
+        
+        .print-page {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 297mm;
+          height: 210mm;
+          grid-template-columns: repeat(3, 88.9mm);
+          grid-template-rows: repeat(3, 63.5mm);
+          gap: 5mm;
+          padding: 5mm;
+          background: white;
+          page-break-after: always;
+        }
+        
+        @media print {
+          body * {
+            visibility: hidden;
+          }
+          
+          @page {
+          size: A4 landscape;
+               margin: 0;
+          }
+        
+          .print-container, .print-container *,
+          .print-page, .print-page * {
+            visibility: visible;
+          }
+        
+          .print-container {
+            display: block !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+          }
+        
+          .print-page {
+            display: grid !important;
+            position: relative;
+          }
+        
+          .photo-slot {
+            border: none;
+            background-color: white;
+          }
+        
+          .file-input-wrapper, button, .top-header, header, footer, .preview-container-wrapper, .indicator {
+            display: none !important;
+          }
+        }
+        
+        footer {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background-color: white;
+          text-align: center;
+          padding: 14px 10px;
+          font-size: 11px;
+          color: #666;
+          z-index: 1000;
+        }
+        
+        footer span a {
+          color: #1689FC;
+          font-weight: bold;
+          text-decoration: none;
+        }
+        
+        footer span a:hover {
+          text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/839/839184.png" alt="Printer Icon" />
+        <h1>Photo Printing Tool</h1>
+    </div>
+    <div id="loader" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;">
+        <span style="
+    width: 40px; height: 40px;
+    border: 5px solid #1689FC;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;">
+        </span>
+    </div>
+
+    <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+    </style>
+    <main>
+        <h2 class="preview-heading" id="preview-heading" style="display: none;">Preview</h2>
+        <div class="preview-container-wrapper" id="preview-container"></div>
+        <div class="indicator" id="indicator"></div>
+
+        <header>
+            <div class="icon-wrapper">
+                <img src="https://raw.githubusercontent.com/Ayaanh001/Photos-printing-tool/main/Assests/header.jpg" alt="Printer Icon" />
+            </div>
+            <h1>Print Wallet Size Photo</h1>
+            <p>Arrange your photos in wallet size format for easy printing with our free online tool! Try it here!</p>
+        </header>
+
+        <div class="file-input-wrapper">
+            <label for="photo-input" class="drop-zone" id="drop-zone">
+                <img src="https://cdn-icons-png.flaticon.com/512/8191/8191595.png" class="drop-zone-icon" />
+                <span>Select photos or drag & drop</span>
+            </label>
+            <input type="file" id="photo-input" accept="image/*" multiple />
+            <button id="printButton">Print</button>
+        </div>
+
+        <div class="print-container" id="print-container"></div>
+    </main>
+
+    <footer>
+        © Photo Printing Tool by <span><a href="https://github.com/Ayaanh001" target="_blank">Ayaan Hussain</a></span>
+    </footer>
+
+    <script>
+        window.addEventListener("load", () => {
+          document.getElementById("loader").style.display = "none";
+        });
+        	const photoInput = document.getElementById('photo-input');
+        const previewContainer = document.getElementById('preview-container');
+        const printButton = document.getElementById('printButton');
+        const dropZone = document.getElementById('drop-zone');
+        const printContainer = document.getElementById('print-container');
+        const indicator = document.getElementById('indicator');
+        
+        photoInput.addEventListener('change', handleFiles);
+        
+        dropZone.addEventListener('dragover', e => {
+          e.preventDefault();
+          dropZone.style.backgroundColor = '#f0f0f0';
+          dropZone.style.color = '#1689FC';
+        });
+        
+        dropZone.addEventListener('dragleave', () => {
+          dropZone.style.backgroundColor = '#1689FC';
+          dropZone.style.color = 'white';
+        });
+        
+        dropZone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          dropZone.style.backgroundColor = '#1689FC';
+          dropZone.style.color = 'white';
+          handleFiles({ target: { files: e.dataTransfer.files } });
+        });
+        
+        function handleFiles(event) {
+          const files = Array.from(event.target.files);
+          //Adjust main padding
+          document.querySelector('main').style.padding = '50px 10px 100px';
+        
+          // Hide header
+          document.querySelector('header').style.display = 'none';
+          document.getElementById('preview-heading').style.display = 'block';
+          
+          previewContainer.innerHTML = '';
+          indicator.innerHTML = '';
+          printContainer.innerHTML = '';
+          printButton.style.display = files.length > 0 ? 'inline-block' : 'none';
+          
+          
+          const groups = [];
+          for (let i = 0; i < files.length; i += 9) {
+            groups.push(files.slice(i, i + 9));
+          }
+        
+          if (groups.length <= 1) {
+            previewContainer.classList.add('center-single');
+          } else {
+            previewContainer.classList.remove('center-single');
+          }
+        
+          groups.forEach((group, groupIndex) => {
+            const box = document.createElement('div');
+            box.className = 'preview-box show';
+            box.setAttribute('data-index', groupIndex);
+        
+            const printPage = document.createElement('div');
+            printPage.className = 'print-page';
+            printPage.setAttribute('data-group-index', groupIndex);
+        
+            group.forEach((file) => {
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                const image = new Image();
+                image.onload = () => {
+                  const isPortrait = image.height > image.width;
+                  const canvas = document.createElement('canvas');
+                  const ctx = canvas.getContext('2d');
+        
+                  if (isPortrait) {
+                    canvas.width = image.height;
+                    canvas.height = image.width;
+                    ctx.translate(0, image.width);
+                    ctx.rotate(-Math.PI / 2);
+                  } else {
+                    canvas.width = image.width;
+                    canvas.height = image.height;
+                  }
+        
+                  ctx.drawImage(image, 0, 0);
+                  const rotatedDataUrl = canvas.toDataURL();
+        
+                  const previewImg = document.createElement('img');
+                  previewImg.src = rotatedDataUrl;
+                  const slot = document.createElement('div');
+                  slot.className = 'photo-slot';
+                  slot.appendChild(previewImg);
+                  box.appendChild(slot);
+        
+                  const printImg = document.createElement('img');
+                  printImg.src = rotatedDataUrl;
+                  const printSlot = document.createElement('div');
+                  printSlot.className = 'photo-slot';
+                  printSlot.appendChild(printImg);
+                  printPage.appendChild(printSlot);
+                };
+                image.src = e.target.result;
+              };
+              reader.readAsDataURL(file);
+            });
+        
+            previewContainer.appendChild(box);
+            printContainer.appendChild(printPage);
+        
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (groupIndex === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+              box.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            });
+            indicator.appendChild(dot);
+          });
+        
+          indicator.style.display = groups.length <= 1 ? 'none' : 'flex';
+        }
+        
+        previewContainer.addEventListener('scroll', () => {
+          const boxes = [...previewContainer.children];
+          const scrollLeft = previewContainer.scrollLeft;
+          const boxWidth = boxes[0]?.offsetWidth + 10 || 1;
+          const index = Math.round(scrollLeft / boxWidth);
+          [...indicator.children].forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+          });
+        });
+        
+        printButton.addEventListener('click', () => {
+          printContainer.style.display = 'block';
+          const printPages = document.querySelectorAll('.print-page');
+          printPages.forEach(page => {
+            page.style.display = 'grid';
+          });
+        	
+          window.print();
+        
+          setTimeout(() => {
+            printContainer.style.display = 'none';
+            printPages.forEach(page => {
+              page.style.display = 'none';
+            });
+          }, 100);
+        });
+    </script>
+</body>
+
+</html>
