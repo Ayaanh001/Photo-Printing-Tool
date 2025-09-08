@@ -56,7 +56,7 @@ This tool brings back the convenience ✨ — especially useful for printing **w
 
 ## **🛠️ How to Use**
 
-1. **Open** 🔗 [photo-printing-tool.vercel.app](https://photo-printing-tool.vercel.app/) in your browser (Chrome, Edge, Firefox, etc.)
+1. **Open** 🔗 [photoprintingtool.vercel.app](https://photo-printing-tool.vercel.app/) in your browser (Chrome, Edge, Firefox, etc.)
 2. **Upload** 📤 the photos you want to print
 3. In the print window, select **Landscape orientation** 🖼️ and adjust print settings if needed
 4. **Print and enjoy!** 🖨️😄
